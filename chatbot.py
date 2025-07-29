@@ -1,13 +1,13 @@
-# chatbot.py
-import openai
+import os
+from openai import OpenAI
 
-openai.api_key = "YOUR_OPENAI_API_KEY"  # Replace or use dotenv
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def get_bot_response(user_message):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",  # or "gpt-4"
         messages=[
-            {"role": "system", "content": "You are a helpful AI assistant."},
+            {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": user_message}
         ]
     )
